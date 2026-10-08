@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Burger Mestre</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+  html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+  body{font-family:'Poppins',system-ui,sans-serif;background:radial-gradient(60rem 28rem at 90% -5%,rgba(200,16,46,.22),transparent),radial-gradient(40rem 24rem at -10% 40%,rgba(225,173,1,.07),transparent),#120d0c;background-attachment:fixed;color:#f5ede6}
+  .display{font-family:'Anton','Poppins',sans-serif;letter-spacing:.02em;font-weight:400}
+  .catpill{white-space:nowrap;padding:.5rem 1rem;border-radius:9999px;font-size:.875rem;font-weight:600;background:#241917;color:#d6c9c0;border:1px solid rgba(255,255,255,.08);transition:background .2s,color .2s}
+  .catpill.active{background:#e1ad01;color:#1a1208;border-color:#e1ad01}
+  .bump{animation:bump .35s ease-out}
+  @keyframes bump{40%{transform:scale(1.18) rotate(-6deg)}100%{transform:none}}
+  @media (prefers-reduced-motion:reduce){.bump{animation:none}}
+  .toast{animation:in .3s ease-out}
+  .toast.out{opacity:0;transform:translateX(20px);transition:all .3s}
+  @keyframes in{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){.toast{animation:none}}
+</style>
+</head>
+<body class="min-h-screen">
+
+<header class="sticky top-0 z-30 h-16 bg-[#120d0c]/90 backdrop-blur border-b border-white/10">
+  <div class="max-w-5xl mx-auto px-4 h-full flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <span class="w-10 h-10 rounded-xl bg-[#c8102e] flex items-center justify-center text-xl shadow-lg">🍔</span>
+      <h1 class="display text-2xl">BURGER <span class="text-[#e1ad01]">MESTRE</span></h1>
+    </div>
+    <span class="flex items-center gap-2 text-xs text-stone-300 bg-white/5 rounded-full px-3 py-1.5"><span class="w-2 h-2 rounded-full bg-green-400"></span>Aberto até 23h</span>
+  </div>
+</header>
+<div class="sticky top-16 z-20 bg-[#120d0c]/90 backdrop-blur border-b border-white/5">
+  <nav class="max-w-5xl mx-auto px-4 py-2 flex gap-2 overflow-x-auto" aria-label="Categorias">
+    <a class="catpill active" data-cat="hamburgueres" href="#hamburgueres">🍔 Hambúrgueres</a>
+    <a class="catpill" data-cat="acompanhamentos" href="#acompanhamentos">🍟 Acompanhamentos</a>
+    <a class="catpill" data-cat="bebidas" href="#bebidas">🥤 Bebidas</a>
+  </nav>
+</div>
+
+<section class="max-w-5xl mx-auto px-4 pt-6 pb-2">
+  <div class="relative overflow-hidden rounded-3xl p-6 sm:p-10 bg-gradient-to-br from-[#a3132a] via-[#6e0f20] to-[#2e080f] shadow-2xl grid md:grid-cols-2 gap-6 items-center">
+    <div class="absolute -right-24 -top-24 w-72 h-72 rounded-full bg-[#e1ad01]/20 blur-3xl"></div>
+    <div class="relative">
+      <h2 class="display text-5xl sm:text-6xl leading-[1.02]">O BURGER QUE O BAIRRO INTEIRO PEDE.</h2>
+      <p class="mt-4 text-stone-200 max-w-sm">Blend na brasa, pão macio e entrega quente na sua porta.</p>
+      <div class="flex flex-wrap gap-2 mt-4 text-sm">
+        <span class="bg-black/30 rounded-full px-3 py-1.5">⏱ 30–40 min</span>
+        <span class="bg-black/30 rounded-full px-3 py-1.5">🛵 Entrega R$ 6,00</span>
+      </div>
+      <a href="#hamburgueres" class="inline-block mt-6 bg-[#e1ad01] text-[#1a1208] font-bold px-7 py-3 rounded-full shadow-lg hover:brightness-110">Pedir agora</a>
+    </div>
+    <svg viewBox="0 0 300 250" class="relative w-full max-w-[18rem] mx-auto drop-shadow-2xl" aria-hidden="true">
+      <path d="M42 182H258Q258 232 150 232Q42 232 42 182Z" fill="#d98a2b"/>
+      <rect x="48" y="164" width="204" height="14" rx="7" fill="#c8102e"/>
+      <rect x="38" y="124" width="224" height="42" rx="21" fill="#4a2417"/>
+      <path d="M45 118H255L236 144L206 122L170 144L140 122L100 144L70 122Z" fill="#e1ad01"/>
+      <path d="M32 104Q50 124 70 106T110 106T150 106T190 106T230 106T268 104L262 118L38 118Z" fill="#5cae3a"/>
+      <path d="M40 102Q40 18 150 18Q260 18 260 102Z" fill="#d98a2b"/>
+      <path d="M62 90Q72 40 150 32Q128 50 118 90Z" fill="#f0a947" opacity=".55"/>
+      <g fill="#fff3d6"><ellipse cx="110" cy="52" rx="7" ry="3.5" transform="rotate(-20 110 52)"/><ellipse cx="152" cy="42" rx="7" ry="3.5"/><ellipse cx="192" cy="56" rx="7" ry="3.5" transform="rotate(20 192 56)"/><ellipse cx="132" cy="74" rx="7" ry="3.5" transform="rotate(10 132 74)"/><ellipse cx="176" cy="80" rx="7" ry="3.5" transform="rotate(-15 176 80)"/><ellipse cx="86" cy="80" rx="7" ry="3.5" transform="rotate(-30 86 80)"/><ellipse cx="220" cy="82" rx="7" ry="3.5" transform="rotate(30 220 82)"/></g>
+    </svg>
+  </div>
+</section>
+
+<main id="menu" class="max-w-5xl mx-auto px-4 pb-32"></main>
+
+<!-- Botão flutuante do carrinho -->
+<button id="cartBtn" aria-label="Abrir carrinho" class="fixed right-4 z-30 bg-[#c8102e] hover:bg-[#a50d26] text-white w-16 h-16 rounded-full shadow-2xl flex items-center justify-center focus:outline-none focus-visible:ring-4 ring-[#e1ad01]" style="bottom:calc(1rem + env(safe-area-inset-bottom,0px))">
+  <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.3 2.3c-.6.6-.2 1.7.7 1.7H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+  <span id="cartCount" class="absolute -top-1 -right-1 bg-[#e1ad01] text-[#1a1208] text-xs font-bold min-w-[1.4rem] h-[1.4rem] px-1 rounded-full flex items-center justify-center">0</span>
+</button>
+
+<!-- Overlay + gaveta -->
+<div id="overlay" class="fixed inset-0 bg-black/60 z-40 hidden"></div>
+<aside id="drawer" class="fixed top-0 right-0 h-full w-full sm:w-[400px] bg-[#1c1412] z-50 shadow-2xl flex flex-col translate-x-full transition-transform duration-300" aria-hidden="true">
+  <div class="flex items-center justify-between p-4 border-b border-white/10" style="padding-top:calc(1rem + env(safe-area-inset-top,0px))">
+    <h3 class="text-lg font-bold">Seu pedido</h3>
+    <button id="closeCart" aria-label="Fechar carrinho" class="text-2xl w-10 h-10 rounded-full hover:bg-white/10">✕</button>
+  </div>
+  <div id="cartItems" class="flex-1 overflow-y-auto p-4 space-y-3"></div>
+  <div class="p-4 border-t border-white/10 space-y-2" style="padding-bottom:calc(1rem + env(safe-area-inset-bottom,0px))">
+    <div class="flex justify-between text-stone-300 text-sm"><span>Subtotal</span><span id="subtotal"></span></div>
+    <div class="flex justify-between text-stone-300 text-sm"><span>Taxa de entrega</span><span id="delivery"></span></div>
+    <div class="flex justify-between text-lg font-bold"><span>Total</span><span id="total" class="text-[#e1ad01]"></span></div>
+    <button id="checkoutBtn" class="w-full mt-2 bg-[#c8102e] hover:bg-[#a50d26] disabled:opacity-40 disabled:cursor-not-allowed font-bold py-3 rounded-xl">Finalizar pedido</button>
+  </div>
+</aside>
+
+<!-- Modal de checkout -->
+<div id="modal" class="fixed inset-0 z-[60] hidden items-center justify-center p-4 bg-black/70">
+  <form id="checkoutForm" class="bg-[#1c1412] w-full max-w-md rounded-2xl p-6 shadow-2xl space-y-4 max-h-full overflow-y-auto">
+    <div class="flex justify-between items-center">
+      <h3 class="text-xl font-bold">Finalizar pedido</h3>
+      <button type="button" id="closeModal" aria-label="Fechar" class="text-2xl w-10 h-10 rounded-full hover:bg-white/10">✕</button>
+    </div>
+    <label class="block text-sm">Nome
+      <input name="nome" required autocomplete="name" class="mt-1 w-full bg-[#120d0c] border border-white/15 rounded-xl px-4 py-3 focus:outline-none focus:border-[#e1ad01]">
+    </label>
+    <div class="grid grid-cols-3 gap-3">
+      <label class="block text-sm col-span-2">Rua<input name="rua" required autocomplete="address-line1" class="mt-1 w-full bg-[#120d0c] border border-white/15 rounded-xl px-4 py-3 focus:outline-none focus:border-[#e1ad01]"></label>
+      <label class="block text-sm">Número<input name="numero" id="numero" inputmode="numeric" class="mt-1 w-full bg-[#120d0c] border border-white/15 rounded-xl px-4 py-3 focus:outline-none focus:border-[#e1ad01]"></label>
+    </div>
+    <label class="flex items-center gap-2 text-sm text-stone-300"><input type="checkbox" id="semNumero" class="accent-[#c8102e]"> Sem número</label>
+    <label class="block text-sm">Bairro<input name="bairro" required class="mt-1 w-full bg-[#120d0c] border border-white/15 rounded-xl px-4 py-3 focus:outline-none focus:border-[#e1ad01]"></label>
+    <label class="block text-sm">Complemento (opcional)<input name="complemento" placeholder="apto, bloco, casa 2" class="mt-1 w-full bg-[#120d0c] border border-white/15 rounded-xl px-4 py-3 focus:outline-none focus:border-[#e1ad01]"></label>
+    <label class="block text-sm">Ponto de referência (opcional)<input name="referencia" placeholder="em frente à padaria" class="mt-1 w-full bg-[#120d0c] border border-white/15 rounded-xl px-4 py-3 focus:outline-none focus:border-[#e1ad01]"></label>
+    <label class="block text-sm">Forma de pagamento
+      <select name="pagamento" required class="mt-1 w-full bg-[#120d0c] border border-white/15 rounded-xl px-4 py-3 focus:outline-none focus:border-[#e1ad01]">
+        <option value="Pix">Pix</option>
+        <option value="Cartão de crédito">Cartão de crédito (na entrega)</option>
+        <option value="Cartão de débito">Cartão de débito (na entrega)</option>
+        <option value="Dinheiro">Dinheiro</option>
+      </select>
+    </label>
+    <div class="flex justify-between font-bold"><span>Total</span><span id="modalTotal" class="text-[#e1ad01]"></span></div>
+    <button id="submitBtn" type="submit" class="w-full bg-[#c8102e] hover:bg-[#a50d26] disabled:opacity-50 font-bold py-3 rounded-xl">Confirmar pedido</button>
+  </form>
+</div>
+
+<div id="toasts" class="fixed top-4 right-4 left-4 sm:left-auto z-[100] flex flex-col gap-2 items-end pointer-events-none" style="top:calc(1rem + env(safe-area-inset-top,0px))"></div>
+
+<script>
+/* ============ Firebase Firestore (estrutura simulada) ============
+   Em produção, troque o bloco "MOCK" pelos imports reais:
+
+   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+   import { getFirestore, collection, addDoc, serverTimestamp }
+     from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+   const app = initializeApp({ apiKey:"...", authDomain:"...", projectId:"..." });
+   const db  = getFirestore(app);
+*/
+// ---- MOCK (mesma assinatura da API do Firestore) ----
+const db = {};
+const collection = (_db, name) => ({ name });
+const serverTimestamp = () => new Date().toISOString();
+const addDoc = async (col, data) => {
+  await new Promise(r => setTimeout(r, 800)); // simula latência de rede
+  const id = 'pedido_' + Math.random().toString(36).slice(2, 10);
+  console.log('[Firestore simulado] coleção:', col.name, 'id:', id, data);
+  return { id };
+};
+// -----------------------------------------------------
+
+const DELIVERY_FEE = 6.00;
+const MENU = {
+  hamburgueres: { titulo: 'Hambúrgueres', itens: [
+    { id: 'h1', emoji: '🍔', nome: 'Mestre Clássico', desc: 'Blend 160g, cheddar, alface, tomate e molho da casa.', preco: 28.90 },
+    { id: 'h2', emoji: '🥓', nome: 'Bacon Brasa', desc: 'Blend 160g, bacon crocante, cheddar e cebola caramelizada.', preco: 34.90, tag: 'Mais pedido' },
+    { id: 'h3', emoji: '🔥', nome: 'Duplo Carmim', desc: 'Dois blends 120g, queijo prato, picles e molho picante.', preco: 39.90, tag: 'Duplo' },
+    { id: 'h4', emoji: '🌱', nome: 'Veggie Mostarda', desc: 'Burger de grão-de-bico, rúcula, tomate e maionese de mostarda.', preco: 31.90, tag: 'Vegetariano' },
+  ]},
+  acompanhamentos: { titulo: 'Acompanhamentos', itens: [
+    { id: 'a1', emoji: '🍟', nome: 'Batata Frita', desc: 'Porção crocante com sal e páprica.', preco: 16.90 },
+    { id: 'a2', emoji: '🧅', nome: 'Onion Rings', desc: 'Anéis de cebola empanados com molho barbecue.', preco: 18.90 },
+    { id: 'a3', emoji: '🧀', nome: 'Batata com Cheddar', desc: 'Batata frita coberta com cheddar e bacon.', preco: 24.90 },
+  ]},
+  bebidas: { titulo: 'Bebidas', itens: [
+    { id: 'b1', emoji: '🥤', nome: 'Refrigerante Lata', desc: 'Cola, guaraná ou limão. 350ml.', preco: 6.50 },
+    { id: 'b2', emoji: '🍋', nome: 'Limonada da Casa', desc: 'Limão siciliano, hortelã e gelo. 500ml.', preco: 10.90 },
+    { id: 'b3', emoji: '🥛', nome: 'Milkshake de Chocolate', desc: 'Sorvete cremoso com calda de chocolate. 400ml.', preco: 19.90, tag: 'Favorito' },
+  ]},
+};
+
+const brl = v => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+const $ = id => document.getElementById(id);
+let cart = []; // [{id, nome, preco, qtd}]
+
+/* ---------- Cardápio ---------- */
+function renderMenu() {
+  $('menu').innerHTML = Object.entries(MENU).map(([key, sec]) => `
+    <section id="${key}" class="pt-8 scroll-mt-36">
+      <h2 class="display text-3xl mb-4 flex items-center gap-3"><span class="w-1.5 h-7 rounded bg-[#e1ad01]"></span>${sec.titulo}</h2>
+      <div class="grid gap-4 sm:grid-cols-2">
+        ${sec.itens.map(i => `
+          <article class="relative bg-gradient-to-b from-[#261b18] to-[#1c1412] rounded-3xl p-4 flex gap-4 border border-white/5 hover:border-[#e1ad01]/40 hover:-translate-y-0.5 transition shadow-lg">
+            <div class="relative text-5xl w-24 h-24 shrink-0 rounded-2xl flex items-center justify-center" style="background:radial-gradient(circle at 30% 25%,#5a2a1c,#1a1210 70%)">${i.emoji}${i.tag ? `<span class="absolute -top-2 -left-2 bg-[#e1ad01] text-[#1a1208] text-[11px] font-bold px-2 py-0.5 rounded-full shadow">${i.tag}</span>` : ''}</div>
+            <div class="flex flex-col flex-1 min-w-0">
+              <h3 class="font-semibold text-lg leading-tight">${i.nome}</h3>
+              <p class="text-sm text-stone-400 flex-1 mt-1">${i.desc}</p>
+              <div class="flex items-center justify-between mt-3">
+                <span class="font-bold text-lg text-[#e1ad01]">${brl(i.preco)}</span>
+                <button data-add="${i.id}" aria-label="Adicionar ${i.nome}" class="bg-[#c8102e] hover:bg-[#a50d26] text-sm font-semibold pl-3 pr-4 py-2 rounded-full flex items-center gap-1.5 focus:outline-none focus-visible:ring-2 ring-[#e1ad01]"><span class="text-lg leading-none">+</span>Adicionar</button>
+              </div>
+            </div>
+          </article>`).join('')}
+      </div>
+    </section>`).join('');
+}
+
+const allItems = () => Object.values(MENU).flatMap(s => s.itens);
+
+/* ---------- Carrinho ---------- */
+function totals() {
+  const subtotal = cart.reduce((s, i) => s + i.preco * i.qtd, 0);
+  const fee = cart.length ? DELIVERY_FEE : 0;
+  return { subtotal, fee, total: subtotal + fee };
+}
+
+function renderCart() {
+  const { subtotal, fee, total } = totals();
+  $('cartCount').textContent = cart.reduce((s, i) => s + i.qtd, 0);
+  $('subtotal').textContent = brl(subtotal);
+  $('delivery').textContent = brl(fee);
+  $('total').textContent = brl(total);
+  $('modalTotal').textContent = brl(total);
+  $('checkoutBtn').disabled = !cart.length;
+  $('cartItems').innerHTML = cart.length ? cart.map(i => `
+    <div class="bg-[#120d0c] rounded-xl p-3 flex items-center gap-3">
+      <div class="flex-1 min-w-0">
+        <p class="font-medium truncate">${i.nome}</p>
+        <p class="text-sm text-[#e1ad01]">${brl(i.preco * i.qtd)}</p>
+      </div>
+      <div class="flex items-center gap-1">
+        <button data-dec="${i.id}" aria-label="Diminuir" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 font-bold">−</button>
+        <span class="w-6 text-center">${i.qtd}</span>
+        <button data-inc="${i.id}" aria-label="Aumentar" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 font-bold">+</button>
+      </div>
+      <button data-rem="${i.id}" aria-label="Remover ${i.nome}" class="w-8 h-8 rounded-lg text-[#ff6b81] hover:bg-white/10">🗑</button>
+    </div>`).join('')
+    : `<p class="text-center text-stone-400 mt-10">Seu carrinho está vazio.<br>Adicione um lanche para começar.</p>`;
+}
+
+function addToCart(id) {
+  const item = allItems().find(i => i.id === id);
+  const found = cart.find(i => i.id === id);
+  found ? found.qtd++ : cart.push({ id: item.id, nome: item.nome, preco: item.preco, qtd: 1 });
+  renderCart();
+  toast(`${item.nome} adicionado ao carrinho`);
+  const b = $('cartBtn'); b.classList.remove('bump'); void b.offsetWidth; b.classList.add('bump');
+}
+
+function changeQty(id, delta) {
+  const item = cart.find(i => i.id === id);
+  if (!item) return;
+  item.qtd += delta;
+  if (item.qtd <= 0) cart = cart.filter(i => i.id !== id);
+  renderCart();
+}
+
+const openCart = () => { $('overlay').classList.remove('hidden'); $('drawer').classList.remove('translate-x-full'); $('drawer').setAttribute('aria-hidden', 'false'); };
+const closeCart = () => { $('overlay').classList.add('hidden'); $('drawer').classList.add('translate-x-full'); $('drawer').setAttribute('aria-hidden', 'true'); };
+const openModal = () => { $('modal').classList.remove('hidden'); $('modal').classList.add('flex'); };
+const closeModal = () => { $('modal').classList.add('hidden'); $('modal').classList.remove('flex'); };
+
+/* ---------- Toasts ---------- */
+function toast(msg, type = 'ok') {
+  const el = document.createElement('div');
+  const color = type === 'error' ? 'border-[#c8102e]' : 'border-[#e1ad01]';
+  el.className = `toast pointer-events-auto bg-[#2a1f1c] border-l-4 ${color} rounded-xl shadow-xl px-4 py-3 text-sm max-w-sm`;
+  el.setAttribute('role', 'status');
+  el.textContent = msg;
+  $('toasts').appendChild(el);
+  setTimeout(() => { el.classList.add('out'); setTimeout(() => el.remove(), 300); }, 3000);
+}
+
+/* ---------- Configuração ---------- */
+const CONFIG = {
+  modo: 'simulado',          // 'simulado' (testes) ou 'real' (usa a ponte com a API de despacho)
+  ponteUrl: '',              // '' = mesmo domínio do site; ou 'https://sua-ponte.onrender.com'
+  cidade: 'Itabira', estado: 'MG',   // cidade de atendimento
+};
+const novoId = () => 'BM' + Date.now().toString(36).toUpperCase() + Math.random().toString(36).slice(2, 5).toUpperCase();
+
+/* ---------- API de despacho (via ponte, a chave nunca fica no navegador) ---------- */
+async function enviarParaDespacho(id, e) {
+  const corpo = { id, rua: e.rua, numero: e.numero, bairro: e.bairro, complemento: e.complemento, referencia: e.referencia, cidade: CONFIG.cidade, estado: CONFIG.estado };
+  if (CONFIG.modo === 'simulado') {
+    await new Promise(r => setTimeout(r, 700));
+    console.log('[Despacho simulado] POST /pedido-site', corpo);
+    return { id, lat: -19.6156, lng: -43.2258 };
+  }
+  const resp = await fetch(CONFIG.ponteUrl + '/pedido-site', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(corpo) });
+  if (!resp.ok) {
+    let d = ''; try { d = (await resp.json()).detail; } catch (_) {}
+    const err = new Error(typeof d === 'string' && d ? d : 'Erro ' + resp.status); err.status = resp.status; throw err;
+  }
+  return resp.json();
+}
+
+/* ---------- Checkout + Firestore ---------- */
+async function salvarPedido(id, cliente, despacho) {
+  const { subtotal, fee, total } = totals();
+  const pedido = {
+    id, cliente,
+    itens: cart.map(({ id, nome, preco, qtd }) => ({ id, nome, preco, qtd })),
+    subtotal, taxaEntrega: fee, total,
+    despacho,                       // {status:'enviado'|'falhou', lat, lng}
+    status: 'recebido',
+    criadoEm: serverTimestamp(),
+  };
+  const ref = await addDoc(collection(db, 'pedidos'), pedido);
+  return ref.id;
+}
+
+$('semNumero').addEventListener('change', e => { $('numero').disabled = e.target.checked; if (e.target.checked) $('numero').value = ''; });
+
+$('checkoutForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const f = new FormData(e.target), v = k => (f.get(k) || '').toString().trim().replace(/\s+/g, ' ');
+  const end = { rua: v('rua'), numero: $('semNumero').checked ? 'S/N' : v('numero'), bairro: v('bairro'), complemento: v('complemento'), referencia: v('referencia') };
+  if (!end.numero) { toast('Informe o número ou marque "Sem número".', 'error'); return; }
+  const texto = `${end.rua}${end.numero !== 'S/N' ? ', ' + end.numero : ''} - ${end.bairro}, ${CONFIG.cidade} - ${CONFIG.estado}`;
+  const cliente = { nome: v('nome'), pagamento: f.get('pagamento'), endereco: texto, enderecoDetalhe: end };
+  const btn = $('submitBtn');
+  btn.disabled = true; btn.textContent = 'Enviando pedido...';
+  const id = novoId();
+  try {
+    let despacho;
+    try {
+      const r = await enviarParaDespacho(id, end);
+      despacho = { status: 'enviado', lat: r.lat, lng: r.lng };
+    } catch (err) {
+      if (err.status === 422) { toast(err.message, 'error'); return; }   // endereço não encontrado: cliente corrige
+      console.error(err);
+      despacho = { status: 'falhou' };                                   // salva o pedido mesmo assim
+    }
+    await salvarPedido(id, cliente, despacho);
+    cart = []; renderCart(); e.target.reset(); $('numero').disabled = false;
+    closeModal(); closeCart();
+    toast(`Pedido enviado, ${cliente.nome.split(' ')[0]}! Código: ${id}`);
+    if (despacho.status === 'falhou') toast('A rota de entrega será gerada pelo restaurante.', 'error');
+  } catch (err) {
+    console.error(err);
+    toast('Não foi possível enviar o pedido. Tente novamente.', 'error');
+  } finally {
+    btn.disabled = false; btn.textContent = 'Confirmar pedido';
+  }
+});
+
+/* ---------- Eventos ---------- */
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-add],[data-inc],[data-dec],[data-rem]');
+  if (!t) return;
+  if (t.dataset.add) addToCart(t.dataset.add);
+  if (t.dataset.inc) changeQty(t.dataset.inc, 1);
+  if (t.dataset.dec) changeQty(t.dataset.dec, -1);
+  if (t.dataset.rem) { cart = cart.filter(i => i.id !== t.dataset.rem); renderCart(); }
+});
+$('cartBtn').addEventListener('click', openCart);
+$('closeCart').addEventListener('click', closeCart);
+$('overlay').addEventListener('click', closeCart);
+$('checkoutBtn').addEventListener('click', () => { if (cart.length) openModal(); });
+$('closeModal').addEventListener('click', closeModal);
+$('modal').addEventListener('click', e => { if (e.target === $('modal')) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeCart(); } });
+
+renderMenu();
+renderCart();
+
+/* destaca a categoria visível */
+const pills = document.querySelectorAll('.catpill');
+const spy = new IntersectionObserver(entries => {
+  entries.forEach(en => {
+    if (en.isIntersecting) pills.forEach(p => p.classList.toggle('active', p.dataset.cat === en.target.id));
+  });
+}, { rootMargin: '-35% 0px -60% 0px' });
+document.querySelectorAll('main section').forEach(sec => spy.observe(sec));
+</script>
+</body>
+</html>
